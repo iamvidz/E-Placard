@@ -1,0 +1,46 @@
+
+<h2>Welcome {{name}}</h2>
+
+{{#if placards}}
+<blockquote class="flow-text">
+Your updates
+</blockquote>
+    <table class="highlight">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Status</th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each placards}}
+                <tr>
+                    <td><a href="/placards/{{_id}}">{{title}}</a></td>
+                    <td>{{formatDate createdAt 'MMMM Do YYYY, h:mm:ss a'}}</td>
+                    <td><span class="dash-status">{{status}}</span></td>
+                    <td>
+                        <a href="/placards/edit/{{_id}}" class="btn btn-floating green accent-4">
+                            <i class="fas fa-pen"></i>
+                        </a>
+                    </td>
+                    <td>
+                        <form action="/placards/{{_id}}" method="POST" id="delete-form">
+                            <input type="hidden" name="_method" value="DELETE">
+                            <button type="submit" class="btn btn-floating red">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            {{/each}}
+        </tbody>
+    </table>
+{{else}}
+
+<blockquote class="flow-text">
+You have not given any updates
+</blockquote>
+{{/if}}

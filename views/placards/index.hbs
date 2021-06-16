@@ -1,0 +1,29 @@
+<h1>Placards</h1>
+<div class="row">
+    
+    {{#each placards}}
+        <div class="col s12 m6 l4" id="card-container">    
+            <div class="card yellow lighten-3">
+                <div class="card-image">
+                    {{{editIcon user ../user _id}}}
+                </div>
+
+                <div class="card-content center-align">
+                    <h5>{{title}}</h5>
+                    <p>{{stripTags (truncate body 100)}}</p>
+                    <br>
+                    <div class="chip">
+                        <img src="{{user.image}}" alt="">
+                        <a href="/placards/user/{{user._id}}">{{user.displayName}}</a>
+                    </div>
+                </div>
+
+                <div class="card-action center-align">
+                    <a href="/placards/{{_id}}" class="btn black">Read More</a>
+                </div>
+            </div>
+        </div>
+    {{else}}
+        <h5>No placards to display</h5>
+    {{/each}}
+</div>
